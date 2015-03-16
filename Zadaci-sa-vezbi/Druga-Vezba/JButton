@@ -1,0 +1,77 @@
+package v2_jbutton;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class V2_jbutton {
+   private JFrame mainFrame;
+   private JLabel headerLabel;
+   private JLabel statusLabel;
+   private JPanel controlPanel;
+
+    public  V2_jbutton(){
+        prepareGUI();
+    }
+    public static void main(String[] args) {
+        V2_jbutton JButtonDemo=new V2_jbutton();
+        JButtonDemo.showButtonDemo();
+        
+         }
+    private void prepareGUI(){
+        mainFrame=new JFrame("Java swing-JButton primer");
+        mainFrame.setSize(400,400);
+        mainFrame.setLayout(new GridLayout(3,3 ));
+        mainFrame.addWindowListener(new WindowAdapter(){ 
+            public void WindowClosing(WindowEvent WindowEvent){
+                System.exit(0);   
+            }
+        });
+        
+        headerLabel=new JLabel("",JLabel.CENTER);
+        statusLabel=new JLabel("",JLabel.CENTER);
+        statusLabel.setSize(350,100);
+        
+        controlPanel=new JPanel();
+        controlPanel.setLayout(new FlowLayout());
+        
+        mainFrame.add(headerLabel);
+        mainFrame.add(statusLabel);
+        mainFrame.add(controlPanel);
+        mainFrame.setVisible(true);
+    }
+    
+    private void showButtonDemo(){
+        headerLabel.setText("Kontrola u akciji-JButton");
+        
+        JButton okButton=new JButton("OK");
+        JButton submitButton=new JButton("Submit");
+        JButton cancelButton=new JButton("Cancel");
+        
+        cancelButton.setHorizontalTextPosition(SwingConstants.LEFT);
+                
+        okButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                statusLabel.setText("Kliknuo sam na OK dugme");
+            }               
+        });
+        
+        submitButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                statusLabel.setText("Kliknuo sam na Submit dugme");                
+            }
+        });
+        
+        cancelButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                statusLabel.setText("Kliknuo sam na Cancel dugme");  
+            }      
+        });
+        
+        controlPanel.add(okButton);
+        controlPanel.add(submitButton);
+        controlPanel.add(cancelButton);
+        
+        mainFrame.setVisible(true);
+    }         
+}
